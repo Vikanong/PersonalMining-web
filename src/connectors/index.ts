@@ -1,3 +1,4 @@
+import React from "react"
 import { InjectedConnector } from '@web3-react/injected-connector'
 import NetworkConnector from './networkConnector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
@@ -44,19 +45,16 @@ export const connectorsByName: { [connectorName in ConnectorNames]: any } = {
 
 interface Config {
   title: string;
-  icon: any;
   connectorId: ConnectorNames;
 }
 
 export const connectors: Config[] = [
   {
     title: "Metamask",
-    icon: "",
     connectorId: ConnectorNames.Injected,
   },
   {
     title: "TrustWallet",
-    icon: "",
     connectorId: ConnectorNames.WalletConnect,
   },
 ];

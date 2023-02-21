@@ -5,6 +5,8 @@ import { getContract, getContractAddress } from '../utils/contractUtils'
 
 import ERC20_ABI from 'constants/abi/ERC20.json'
 import MULTICALL_ABI from 'constants/abi/Multicall.json'
+import Mining_ABI from 'constants/abi/Mining.json'
+
 import Raise_ABI from 'constants/abi/Raise.json'
 
 import contractsAddress from 'constants/contractsAddress'
@@ -39,6 +41,11 @@ export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: b
 export function useMulticallContract(): Contract | null {
   const address = getContractAddress(contractsAddress.multiCall)
   return useContract(address, MULTICALL_ABI, false)
+}
+
+export function useMiningContract(): Contract | null {
+  const address = getContractAddress(contractsAddress.mining)
+  return useContract(address, Mining_ABI)
 }
 
 export function useRaiseContract(): Contract | null {

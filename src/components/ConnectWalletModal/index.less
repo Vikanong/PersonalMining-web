@@ -1,0 +1,43 @@
+.walletModal {
+    width: 20rem;
+    min-height: 10rem;
+    position: fixed;
+    z-index: 99;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 2rem 3rem;
+    background: #e5e5e5;
+    border-radius: 2rem;
+    box-shadow: 0 0 2rem 0rem #b9b9b9;
+
+    ul {
+        li {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 2rem 0;
+            transition: 0.3s;
+            border: 1px solid #cfcfcf;
+            border-radius: 13px;
+            font-size: 1.8rem;
+
+
+            span {
+                margin-right: 1rem;
+                font-size: 0;
+            }
+
+            &:hover {
+                background: #e0e0e0;
+                box-shadow: inset 5px 5px 10px #cacaca,
+                    inset -5px -5px 10px #f6f6f6;
+                transition: 0.3s;
+                border: 1px solid #e7e7e7;
+            }
+        }
+    }
+}
