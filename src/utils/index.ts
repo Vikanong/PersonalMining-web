@@ -16,7 +16,7 @@ export const truncation = (num: string | number, decimal = 4) => {
   const a = String(num);
   const i = a.indexOf('.');
   if (i > -1) {
-    if (decimal == 0) {
+    if (decimal === 0) {
       return a.split('.')[0]
     }
     return a.substring(0, i + decimal + 1);

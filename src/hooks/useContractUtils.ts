@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { formatEther } from '@ethersproject/units'
 import { useActiveWeb3React } from './web3hooks'
 import { useTokenContract } from "hooks/useContract"
-import { pow18 } from '../utils'
+// import { pow18 } from '../utils'
 
 export const useMainChainBalance = () => {
   const { library, account } = useActiveWeb3React()
@@ -11,7 +11,7 @@ export const useMainChainBalance = () => {
     if (balanceValue) {
       return formatEther(balanceValue)
     }
-  }, [account])
+  }, [account, library])
 }
 
 
@@ -23,12 +23,12 @@ export const useTokenInfo = (tokenAddress: string) => {
     if (balanceValue) {
       return formatEther(balanceValue)
     }
-  }, [account, tokenAddress])
+  }, [account, contract])
 
   const getTokenSymbol = useCallback(async () => {
     const symbol = await contract?.symbol()
     if (symbol) return symbol
-  }, [account, tokenAddress])
+  }, [contract])
 
   return {
     getTokenBalance,

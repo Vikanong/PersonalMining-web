@@ -34,6 +34,11 @@ const router: Array<Router> = [
     element: lazyLoad('connectWallet')
   },
   {
+    name: "mining",
+    path: '/mining',
+    element: lazyLoad('mining')
+  },
+  {
     name: "Navigate",
     path: "",
     element: Navigate

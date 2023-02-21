@@ -1,3 +1,5 @@
+@import "colors.less";
+
 h1 {
   color: @primary-color;
 
@@ -14,4 +16,334 @@ h1 {
   width: 20px;
   height: 20px;
   // fill: red;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 62.5% !important;
+  color: @txtColor1;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 1.6rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+p {
+  margin: 0;
+  word-break: break-word;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 3px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.123);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.123);
+  background-color: rgb(255, 255, 255);
+}
+
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.11);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.11);
+  background-color: @themeColor;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: @themeColor;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.safetyWidth {
+  margin: auto;
+  max-width: 1200px;
+
+  @media @mobile {
+    width: 92%;
+  }
+
+  @media @desktop {
+    // width: 1400px;
+  }
+}
+
+.contentWidth {
+  margin: auto;
+  max-width: 1100px;
+
+  @include mobile {
+    width: 92%;
+  }
+}
+
+.mobileHid {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+.desktopHid {
+  @include laptop {
+    display: none !important;
+  }
+
+  @include desktop {
+    display: none !important;
+  }
+}
+
+.pageContentWidth {
+  width: 90.6rem;
+  margin: auto;
+
+  @include mobile {
+    width: 92%;
+  }
+}
+
+.h100 {
+  height: 100%;
+}
+
+.ft12 {
+  font-size: 1.2rem;
+}
+
+.ft14 {
+  font-size: 1.4rem;
+}
+
+.ft15 {
+  font-size: 1.5rem;
+}
+
+.ft16 {
+  font-size: 1.6rem;
+}
+
+.ft18 {
+  font-size: 1.8rem;
+}
+
+.ft20 {
+  font-size: 2.0rem;
+}
+
+.ft22 {
+  font-size: 2.2rem;
+}
+
+.ft24 {
+  font-size: 2.4rem;
+}
+
+.ftBold {
+  font-weight: bold;
+}
+
+.fw600 {
+  font-weight: 600;
+}
+
+.fw400 {
+  font-weight: 400;
+}
+
+.mt3 {
+  margin-top: 0.3rem;
+}
+
+.mt5 {
+  margin-top: 0.5rem;
+}
+
+.mt8 {
+  margin-top: 0.8rem;
+}
+
+.mt10 {
+  margin-top: 1.0rem;
+}
+
+.mt15 {
+  margin-top: 1.5rem;
+}
+
+.mt20 {
+  margin-top: 2.0rem;
+}
+
+.mt30 {
+  margin-top: 3rem;
+}
+
+.mt40 {
+  margin-top: 4rem;
+
+  @include mobile {
+    margin-top: 3rem;
+  }
+}
+
+.mb10 {
+  margin-bottom: 1rem;
+}
+
+.mb20 {
+  margin-bottom: 2rem;
+}
+
+.ml3 {
+  margin-left: 0.3rem;
+}
+
+.ml5 {
+  margin-left: 0.5rem;
+}
+
+.ml10 {
+  margin-left: 1rem;
+}
+
+.ml15 {
+  margin-left: 1.5rem;
+}
+
+.ml20 {
+  margin-left: 2rem;
+}
+
+.float_l {
+  float: left;
+}
+
+.float_r {
+  float: right;
+}
+
+.clearfix:after {
+  content: "";
+  height: 0;
+  line-height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+.text_c {
+  text-align: center;
+}
+
+.text_r {
+  text-align: right;
+}
+
+.text_l {
+  text-align: left;
+}
+
+.text_b {
+  vertical-align: text-bottom;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.margin_auto {
+  margin: auto;
+}
+
+.center_grid {
+  display: grid;
+  place-content: center;
+}
+
+.text_j {
+  text-align: justify;
+}
+
+.breakWord {
+  word-break: break-word;
+}
+
+.textIndent {
+  text-indent: 3rem;
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.no-drop {
+  cursor: no-drop !important;
+}
+
+.break {
+  word-break: break-all;
+}
+
+.alertDiv {
+  max-width: 70%;
+  height: 50px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 3999;
+  text-align: center;
+}
+
+.alertTXT {
+  display: inline-block;
+  min-width: 10rem;
+  padding: 1.5rem 2rem;
+  margin: auto;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 5px;
+  box-sizing: border-box;
+  word-break: break-word;
 }
