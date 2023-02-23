@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
 import ConnectWalletModal from "@/components/ConnectWalletModal"
+import ImageComponent from "@/components/ImageComponent"
 import { useActiveWeb3React } from 'hooks/web3hooks'
-// import { usePoolsIds, usePools } from 'hooks/useMiningContract'
+import useMining from 'hooks/useMiningContract'
 
 import { useMiningContract } from 'hooks/useContract'
-import { getPools } from "@/utils/miningHelpers"
 
 import "./index.less"
 
 const Mining: React.FC = () => {
   const [pools, setPools] = useState<any[]>([]);
-  const { account } = useActiveWeb3React();
+  const { active, account } = useWeb3ReactCore();
   const miningContract = useMiningContract();
-  // const ids = usePoolsIds();
-  // const pools = usePools(ids);
+  const { poolList } = useMining(miningContract);
 
   useEffect(() => {
-    const get = async () => {
-      const list = await getPools(miningContract);
-    }
-    get()
-  }, [miningContract])
-
-
+    setPools(poolList);
+    // console.log(active);
+  }, [miningContract, poolList])
 
   const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
 
@@ -30,15 +26,28 @@ const Mining: React.FC = () => {
     <div>
       {/* <ConnectWalletModal /> */}
       <ul className="miningList">
-        <li>
-          mining
+        {pools.map(pool => {
+          return (
+            <li key={pool.miningId} className="th-card">
+              <ImageComponent imageName={pool.symbol.toLowerCase()} />
+              <div className="symbol">
+                {pool.symbol}
+              </div>
+              <div className="rate">
+                RATE: {pool.rate}% / minute
+              </div>
 
-        </li>
+              {account}
 
+
+            </li>
+          )
+        })}
 
       </ul>
 
-      {accountEllipsis}
+      {/* {accountEllipsis} */}
+
     </div>
 
   )

@@ -1,60 +1,43 @@
 import { useState, useEffect } from 'react'
 import { useMiningContract } from './useContract'
-import { useMulticall } from "./useMulticall"
+import useMulticall from "./useMulticall"
 import MiningAbi from "../constants/abi/Mining.json"
 import contractsAddress from 'constants/contractsAddress'
 import { getContractAddress } from '../utils/contractUtils'
-
 import { Contract } from '@ethersproject/contracts'
 
-// export const usePoolsIds = () => {
-//     const [ids, setIds] = useState<any[]>([]);
-//     const contract = useMiningContract();
-//     const getIds = async () => {
-//         const length = await contract?.poolsLength();
-//         const list = [...new Array(length.toNumber()).keys()];
-//         setIds(list);
-//     }
-//     useEffect(() => {
-//         if (contract) getIds()
-//     }, [contract])
-//     return ids
-// }
+export default function useMining(contract: Contract | null) {
+    const [poolList, setPoolList] = useState([]);
+    const address = getContractAddress(contractsAddress.mining);
+    const { multicallRequest } = useMulticall();
 
-// export const usePools = (ids: number[]) => {
-
-//     console.log(ids);
-//     const [pools, setPools] = useState([]);
-//     const contract = useMiningContract();
-//     const address = getContractAddress(contractsAddress.mining);
-//     const stateCalls = ids.map((i) => ({
-//         address: address,
-//         name: 'state',
-//         params: [i],
-//     }))
-//     // const getPools = async () => {
-//     //     const stateCalls = ids.map((i) => ({
-//     //         address: address,
-//     //         name: 'state',
-//     //         params: [i],
-//     //     }))
-//     //     const state = await useMulticall(MiningAbi, stateCalls);
-//     // }
-//     useEffect(() => {
-//         if (contract) {
-//             // getPools()
-//         }
-//     }, [contract])
-//     return pools
-// }
-
-export default function useMining(contract: Contract) {
     const pools = async () => {
         const length = await contract?.poolsLength();
+        const ids = [...new Array(length.toNumber()).keys()];
+        const stateCalls = ids.map((i) => ({
+            address: address,
+            name: 'Pools',
+            params: [i],
+        }))
+        const list = await multicallRequest(stateCalls, MiningAbi);
+        const data = list.map((pool: any) => {
+            return {
+                symbol: pool.symbol,
+                tokenAddress: pool.tokenAddress,
+                miningId: pool.miningId.toNumber(),
+                rate: pool.rate.toNumber(),
+                stakingNum: pool.stakingNum.toNumber(),
+                total: pool.total.toNumber(),
+            }
+        })
+        setPoolList(data)
     }
 
+    useEffect(() => {
+        pools()
+    }, [contract])
 
     return {
-        pools
+        poolList
     }
 }

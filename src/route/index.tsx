@@ -11,7 +11,7 @@ interface Router {
 const lazyLoad = (path: any) => {
   const Comp = lazy(() => import(`views/${path}`))
   return (
-    <Suspense fallback={<>loading...</>}>
+    <Suspense>
       <Comp />
     </Suspense>
   )

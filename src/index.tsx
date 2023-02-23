@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Providers from './web3Providers/Providers';
 import { Buffer } from 'buffer';
+import { StoreProvider } from './store/store';
 
 window.Buffer = Buffer;
 
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Providers>
-    <App />
+    <StoreProvider>
+      <App />
+    </StoreProvider>
   </Providers>
 );
 reportWebVitals();

@@ -1,14 +1,16 @@
 @import "colors.less";
 
+@bgColor: #ededed;
+
 h1 {
   color: @primary-color;
 
   span {
-    color: rgb(0, 225, 255);
+    // color: rgb(0, 225, 255);
   }
 
   @media @mobile {
-    color: red;
+    // color: red;
   }
 }
 
@@ -30,7 +32,7 @@ body {
   padding: 0;
   font-size: 1.6rem;
   -webkit-tap-highlight-color: transparent;
-  background: #e0e0e0;
+  background: @bgColor;
 }
 
 p {
@@ -350,10 +352,8 @@ a {
 }
 
 .th-card {
-  border-radius: 10px;
-  background: #e0e0e0;
-  box-shadow: 7px 7px 15px #afafaf,
-    -7px -7px 15px #ffffff;
-  background-color: linear-gradient(145deg, #dadada, #adadad);
-
+  border-radius: 30px;
+  background: @bgColor;
+  box-shadow: 5px 5px 7px #cccccc,
+    -5px -5px 7px #ffffff;
 }
