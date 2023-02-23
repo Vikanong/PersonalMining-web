@@ -4,7 +4,7 @@ import { useActiveWeb3React } from 'hooks/web3hooks'
 import { connectorLocalStorageKey, ConnectorNames, connectors } from 'connectors/index'
 import { ReactComponent as LogoIcon } from 'images/icon/svg/logo.svg'
 // import { useSummary } from 'hooks/useRaiseContract'
-import { useTokenInfo, useMainChainBalance } from 'hooks/useContractUtils'
+// import { useTokenInfo, useMainChainBalance } from 'hooks/useContractUtils'
 import { truncation } from '@/utils'
 import "./index.less"
 
@@ -15,8 +15,8 @@ const ConnectWallet: React.FC = () => {
   const [tokenAddress, setTokenAddress] = useState('')
   const { connectWallet, disconnect } = useAuth()
   const { account } = useActiveWeb3React()
-  const getMainChainBalance = useMainChainBalance()
-  const { getTokenBalance, getTokenSymbol } = useTokenInfo(tokenAddress)
+  // const getMainChainBalance = useMainChainBalance()
+  // const { getTokenBalance, getTokenSymbol } = useTokenInfo(tokenAddress)
 
   // const summaryData = useSummary()
 
@@ -36,27 +36,27 @@ const ConnectWallet: React.FC = () => {
 
 
   const getBalance = async (par: string) => {
-    if (par === 'BNB') {
-      const _balance = await getMainChainBalance()
-      setBalance(_balance || "0")
-      setTokenAddress('')
-      setSymbol('BNB')
-    } else {
-      setTokenAddress('0x0277B12D20F717E1a8b39C66EEE9e8C54A10a111')
-    }
+    // if (par === 'BNB') {
+    //   const _balance = await getMainChainBalance()
+    //   setBalance(_balance || "0")
+    //   setTokenAddress('')
+    //   setSymbol('BNB')
+    // } else {
+    //   setTokenAddress('0x0277B12D20F717E1a8b39C66EEE9e8C54A10a111')
+    // }
   }
 
-  useEffect(() => {
-    const get = async () => {
-      const _balance = await getTokenBalance()
-      setBalance(_balance || "0")
-      const sym = await getTokenSymbol()
-      setSymbol(sym)
-    }
-    if (tokenAddress) {
-      get()
-    }
-  }, [tokenAddress])
+  // useEffect(() => {
+  //   const get = async () => {
+  //     const _balance = await getTokenBalance()
+  //     setBalance(_balance || "0")
+  //     const sym = await getTokenSymbol()
+  //     setSymbol(sym)
+  //   }
+  //   if (tokenAddress) {
+  //     get()
+  //   }
+  // }, [tokenAddress])
 
 
 

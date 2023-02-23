@@ -12,11 +12,17 @@
 
   li {
     width: 30rem;
-    min-height: 30rem;
+    min-height: 28rem;
     margin: 0 5rem;
     border-radius: 1rem;
-    padding: 3rem;
+    padding: 4rem 3rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+      flex: 1;
+    }
 
     .icon {
       width: 10rem;
@@ -33,6 +39,53 @@
     .rate {
       color: #c39628;
       font-size: 1.4rem;
+    }
+
+    .operate {
+      width: 100%;
+      margin-top: 2rem;
+      display: flex;
+      position: relative;
+
+      .value {
+        width: 70%;
+        flex: 1;
+        height: 4.5rem;
+        box-sizing: border-box;
+        border: 2px solid #c1c1c1;
+        border-radius: 6px 0 0 6px;
+        outline: none;
+        padding-left: 1rem;
+        font-size: 2rem;
+        color: #545454;
+
+        &:focus {
+          border: 2px solid #f3ba2f;
+        }
+      }
+
+      .stake {
+        flex-shrink: 0;
+        width: 10rem;
+        height: 4.5rem;
+        box-sizing: border-box;
+        border: none;
+        background: #f3ba2f;
+        border-radius: 0 6px 6px 0;
+        font-size: 2rem;
+        line-height: 4.5rem;
+        vertical-align: top;
+        color: white;
+        cursor: pointer;
+      }
+
+      .balance {
+        position: absolute;
+        left: 0;
+        bottom: -2rem;
+        font-size: 1.3rem;
+        color: #767676;
+      }
     }
   }
 }
