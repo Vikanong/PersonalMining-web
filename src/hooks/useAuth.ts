@@ -9,6 +9,7 @@ import {
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
 import { connectorsByName, ConnectorNames, connectorLocalStorageKey } from 'connectors/index'
+import { tip } from "@/utils"
 
 const useAuth = () => {
   const { activate, deactivate } = useWeb3React()
@@ -22,6 +23,7 @@ const useAuth = () => {
           console.error('Unsupported Chain Id', 'Unsupported Chain Id Error. Check your chain Id.');
         } else if (error instanceof NoEthereumProviderError) {
           console.error('Provider Error', 'No provider was found')
+          tip("No provider was found")
         } else if (
           error instanceof UserRejectedRequestErrorInjected ||
           error instanceof UserRejectedRequestErrorWalletConnect

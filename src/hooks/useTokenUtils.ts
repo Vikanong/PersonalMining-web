@@ -9,7 +9,7 @@ import Decimal from 'decimal.js';
 
 
 export default function useTokenUtils(tokenAddress: string) {
-  const [balance, setBalance] = useState("");
+  const [balance, setBalance] = useState("--");
   const tokenContract = useTokenContract(tokenAddress);
   const { account, library } = useActiveWeb3React();
 

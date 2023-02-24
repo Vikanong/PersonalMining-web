@@ -11,7 +11,6 @@ interface Props {
   checkModal: Function
 }
 
-
 const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
 
   const { connectWallet, disconnect } = useAuth()
@@ -33,7 +32,7 @@ const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
       case "Metamask":
         return <MetamaskIcon />
         break;
-      case "TrustWallet":
+      case "WalletConnect":
         return <WalletConnectIcon />
         break;
       default:

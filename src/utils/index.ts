@@ -19,3 +19,16 @@ export const truncation = (num: string | number, decimal = 4) => {
   }
   return a;
 }
+
+export const tip = (txt: string) => {
+  let div = document.createElement("div")
+  let tip = document.createElement("span")
+  div.classList.add('alertDiv');
+  tip.classList.add('alertTXT');
+  tip.innerText = txt;
+  div.appendChild(tip);
+  document.body.appendChild(div);
+  setTimeout(() => {
+    document.body.removeChild(div);
+  }, 1500);
+}

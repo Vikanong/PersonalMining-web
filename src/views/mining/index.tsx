@@ -27,8 +27,6 @@ const Mining: React.FC = () => {
   }
 
   const staking = async (pool: PoolType, amount: string) => {
-    console.log(pool);
-    console.log(amount);
     if (pool.symbol === 'BNB') {
       const tsHash = await stakingBNB(pool.miningId, amount);
     } else {

@@ -54,7 +54,7 @@ export const connectors: Config[] = [
     connectorId: ConnectorNames.Injected,
   },
   {
-    title: "TrustWallet",
+    title: "WalletConnect",
     connectorId: ConnectorNames.WalletConnect,
   },
 ];
