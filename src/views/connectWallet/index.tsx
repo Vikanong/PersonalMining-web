@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import useAuth from 'hooks/useAuth'
 import { useActiveWeb3React } from 'hooks/web3hooks'
 import { connectorLocalStorageKey, ConnectorNames, connectors } from 'connectors/index'
 import { ReactComponent as LogoIcon } from 'images/icon/svg/logo.svg'
-// import { useSummary } from 'hooks/useRaiseContract'
-// import { useTokenInfo, useMainChainBalance } from 'hooks/useContractUtils'
 import { truncation } from '@/utils'
 import "./index.less"
 
@@ -15,10 +13,7 @@ const ConnectWallet: React.FC = () => {
   const [tokenAddress, setTokenAddress] = useState('')
   const { connectWallet, disconnect } = useAuth()
   const { account } = useActiveWeb3React()
-  // const getMainChainBalance = useMainChainBalance()
-  // const { getTokenBalance, getTokenSymbol } = useTokenInfo(tokenAddress)
 
-  // const summaryData = useSummary()
 
   // 连接钱包
   const connect = (connectorId: ConnectorNames) => {

@@ -47,8 +47,3 @@ export function useMiningContract(): Contract | null {
   const address = getContractAddress(contractsAddress.mining)
   return useContract(address, Mining_ABI)
 }
-
-export function useRaiseContract(): Contract | null {
-  const address = getContractAddress(contractsAddress.raise)
-  return useContract(address, Raise_ABI)
-}

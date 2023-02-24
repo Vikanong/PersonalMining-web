@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import useMulticall from "./useMulticall"
 import MiningAbi from "../constants/abi/Mining.json"
 import contractsAddress from 'constants/contractsAddress'
-import { getContractAddress, pow18, tokenDecimal } from '@/utils/contractUtils'
-import useContractUtils from 'hooks/useContractUtils'
+import { getContractAddress, pow18 } from '@/utils/contractUtils'
 import { Contract } from '@ethersproject/contracts'
 import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
 import Decimal from 'decimal.js';
@@ -12,8 +11,7 @@ export default function useMining(contract: Contract | null) {
     const [poolList, setPoolList] = useState<any[]>([]);
     const address = getContractAddress(contractsAddress.mining);
     const { multicallRequest } = useMulticall();
-    const { mainChainBalance, tokenBalance, isApproveContract, approve } = useContractUtils()
-    const { active, account } = useWeb3ReactCore();
+    const { account } = useWeb3ReactCore();
 
 
     const getPools = async () => {

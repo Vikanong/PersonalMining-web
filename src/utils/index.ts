@@ -1,4 +1,3 @@
-import { BigNumber } from '@ethersproject/bignumber'
 
 // 判断终端函数
 export const isMobile = () => {

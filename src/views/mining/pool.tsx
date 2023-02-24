@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
 import ImageComponent from "@/components/ImageComponent"
 import { getContractAddress } from '@/utils/contractUtils'
@@ -13,7 +13,8 @@ import { useMiningContract } from 'hooks/useContract'
 const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Function }> = ({ pool, checkModal, staking }) => {
     const [val, setVal] = useState("");
     const [reward, setReward] = useState("");
-    const { active, account } = useWeb3ReactCore();
+    const [disabled, setDisabled] = useState(false);
+    const { active } = useWeb3ReactCore();
     const miningContract = useMiningContract();
     const { getReward, withdraw } = useMining(miningContract);
     const contractAddress = getContractAddress(contractsAddress.mining);
@@ -21,13 +22,16 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
 
     const stakeClick = async (pool: PoolType) => {
         if (active) {
+            setDisabled(true);
             if (pool.symbol != 'BNB') {
                 const is = await isApprove(contractAddress || '');
                 if (!is) {
-                    await approve(contractAddress || '')
+                    await approve(contractAddress || '');
                 }
             }
-            staking(pool, val)
+            const Tx = await staking(pool, val);
+            setDisabled(false);
+            getPoolReward();
         } else {
             checkModal(true)
         }
@@ -39,10 +43,16 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
 
     const withdrawClick = async () => {
         if (Number(reward) > 0) {
+            setDisabled(true);
             const Tx = await withdraw(pool.miningId);
+            setDisabled(false);
+            getPoolReward();
         }
     }
 
+    setInterval(() => {
+        getPoolReward()
+    }, 60 * 1000)
 
     useEffect(() => {
         getPoolReward()
@@ -70,13 +80,16 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
                 </div>
                 <div className="stake">
                     <input className="value" type="text" onChange={(e) => { setVal(e.target.value) }} />
-                    <button className="staking" onClick={() => {
+                    <button className="staking control" onClick={() => {
                         stakeClick(pool)
-                    }}>{active ? 'Staking' : 'Connect'} </button>
+                    }} disabled={disabled}>{active ? 'Staking' : 'Connect'} </button>
                 </div>
-                {Number(reward) > 0 && <button className="withdraw" onClick={withdrawClick}>{active ? 'Withdraw' : 'Connect'} </button>}
+                {Number(reward) > 0 && <div>
+                    <button className="withdraw control" onClick={withdrawClick} disabled={disabled}>{active ? 'Withdraw' : 'Connect'} </button>
+                    <p className="reward">Reward: <span>{reward}</span></p>
+                </div>}
 
-                {/* {reward} */}
+
             </div>
         </li>
     )

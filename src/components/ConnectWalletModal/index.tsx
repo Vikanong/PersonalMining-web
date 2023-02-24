@@ -22,19 +22,17 @@ const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
   }
 
   // 断开钱包
-  const disConnectWallet = () => {
-    disconnect();
-    localStorage.removeItem(connectorLocalStorageKey);
-  }
+  // const disConnectWallet = () => {
+  //   disconnect();
+  //   localStorage.removeItem(connectorLocalStorageKey);
+  // }
 
   const getIcon = (title: string) => {
     switch (title) {
       case "Metamask":
         return <MetamaskIcon />
-        break;
       case "WalletConnect":
         return <WalletConnectIcon />
-        break;
       default:
         break;
     }
