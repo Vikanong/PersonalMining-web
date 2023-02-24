@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Contract } from '@ethersproject/contracts'
 import { useActiveWeb3React } from './web3hooks'
-import { getContract, getContractAddress } from '../utils/contractUtils'
+import { getContract, getContractAddress } from '@/utils/contractUtils'
 
 import ERC20_ABI from 'constants/abi/ERC20.json'
 import MULTICALL_ABI from 'constants/abi/Multicall.json'

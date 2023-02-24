@@ -38,14 +38,36 @@
 
     .rate {
       color: #c39628;
+      font-size: 1.8rem;
+    }
+
+    .total {
+      color: #8d8d8d;
       font-size: 1.4rem;
+      margin-top: 1rem;
+
+      p {
+        margin: 0.3rem 0;
+      }
+
+      span {
+        color: #c39628;
+      }
     }
 
     .operate {
       width: 100%;
       margin-top: 2rem;
-      display: flex;
-      position: relative;
+
+      .balance {
+        font-size: 1.3rem;
+        color: #767676;
+        text-align: left;
+      }
+
+      .stake {
+        display: flex;
+      }
 
       .value {
         width: 70%;
@@ -64,7 +86,7 @@
         }
       }
 
-      .stake {
+      .staking {
         flex-shrink: 0;
         width: 10rem;
         height: 4.5rem;
@@ -79,13 +101,22 @@
         cursor: pointer;
       }
 
-      .balance {
-        position: absolute;
-        left: 0;
-        bottom: -2rem;
-        font-size: 1.3rem;
-        color: #767676;
+      .withdraw {
+        width: 100%;
+        flex-shrink: 0;
+        height: 4.5rem;
+        box-sizing: border-box;
+        border: none;
+        background: #f3ba2f;
+        border-radius: 6px;
+        font-size: 2rem;
+        line-height: 4.5rem;
+        vertical-align: top;
+        color: white;
+        cursor: pointer;
+        margin-top: 1rem;
       }
+
     }
   }
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRaiseContract } from './useContract'
-import { pow18 } from '../utils'
+import { pow18 } from '@/utils/contractUtils'
 
 export const useSummary = () => {
   const [data, setData] = useState({

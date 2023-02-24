@@ -4,6 +4,7 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { Address } from 'constants/index'
 import { MainChaid } from 'connectors/index'
+import Decimal from 'decimal.js';
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -13,6 +14,8 @@ export function isAddress(value: any): string | false {
     return false
   }
 }
+
+export const pow18 = Decimal.pow(10, 18);
 
 // account is not optional
 export function getSigner(library: Web3Provider, account: string): JsonRpcSigner {
@@ -38,4 +41,17 @@ export const getContractAddress = (address: Address) => {
 
 export const getTokenAddress = (address: Address) => {
   return address[MainChaid];
+}
+
+export const tokenDecimal = (decimal: any) => {
+  return Decimal.pow(10, decimal);
+}
+
+export const getTokenDecimal = async (contract?: Contract | null) => {
+  if (contract) {
+    console.log(contract);
+    // const decimals = await contract.methods.decimals().call();
+    // return tokenDecimal(decimals);
+  }
+  return 0
 }

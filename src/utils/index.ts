@@ -8,10 +8,6 @@ export const isMobile = () => {
   return false;  // PC端
 }
 
-export const pow18 = BigNumber.from(10).pow(18);
-
-export const BIG_ZERO = BigNumber.from(0);
-
 export const truncation = (num: string | number, decimal = 4) => {
   const a = String(num);
   const i = a.indexOf('.');
