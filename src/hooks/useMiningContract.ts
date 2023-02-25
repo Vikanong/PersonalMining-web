@@ -90,7 +90,7 @@ export default function useMining(contract: Contract | null) {
 
     useEffect(() => {
         getPools()
-    }, [contract])
+    }, [])
 
     return {
         poolList,

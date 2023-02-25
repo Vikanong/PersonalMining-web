@@ -10,6 +10,6 @@
       "constants/*": ["src/constants/*"],
       "hooks/*": ["src/hooks/*"],
       "connectors/*": ["src/connectors/*"]
-    }
+    },
   }
 }

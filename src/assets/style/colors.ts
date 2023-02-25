@@ -3,3 +3,4 @@ module.exports = {
   '@desktop': "~'only screen and (min-width: 760px)'",
   '@mobile': "~'only screen and (max-width: 760px)'",
 }
+export {}

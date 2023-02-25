@@ -30,7 +30,7 @@ module.exports = {
       'constants': resolve('src/constants'),
       'hooks': resolve('src/hooks'),
       'connectors': resolve('src/connectors'),
-    }
+    },
   },
   plugins: [
     {
@@ -63,8 +63,10 @@ module.exports = {
       ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }, 'antd'],
       ["@babel/plugin-proposal-decorators", { "legacy": true }],
       ["@babel/plugin-proposal-class-properties", { "loose": true }],
-      ["@babel/plugin-proposal-private-methods", { "loose": true }]
+      ["@babel/plugin-proposal-private-methods", { "loose": true }],
+      // ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
     ],
     loaderOptions: (babelLoaderOptions, { env, paths }) => { return babelLoaderOptions; }
   },
 }
+export {}

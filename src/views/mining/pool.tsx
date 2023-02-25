@@ -23,7 +23,7 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
     const stakeClick = async (pool: PoolType) => {
         if (active) {
             setDisabled(true);
-            if (pool.symbol != 'BNB') {
+            if (pool.symbol !== 'BNB') {
                 const is = await isApprove(contractAddress || '');
                 if (!is) {
                     await approve(contractAddress || '');
@@ -32,6 +32,7 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
             const Tx = await staking(pool, val);
             setDisabled(false);
             getPoolReward();
+            return Tx
         } else {
             checkModal(true)
         }
@@ -47,6 +48,7 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
             const Tx = await withdraw(pool.miningId);
             setDisabled(false);
             getPoolReward();
+            return Tx
         }
     }
 
@@ -56,7 +58,7 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
 
     useEffect(() => {
         getPoolReward()
-    }, [pool.tokenAddress])
+    }, [])
 
     return (
         <li key={pool.miningId} className="th-card">

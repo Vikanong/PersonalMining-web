@@ -18,24 +18,24 @@ const lazyLoad = (path: any) => {
 }
 
 const router: Array<Router> = [
-  {
-    name: "home",
-    path: '/',
-    element: lazyLoad('home')
-  },
-  {
-    name: "about",
-    path: '/about',
-    element: lazyLoad('about')
-  },
-  {
-    name: "connect",
-    path: '/connect',
-    element: lazyLoad('connectWallet')
-  },
+  // {
+  //   name: "home",
+  //   path: '/',
+  //   element: lazyLoad('home')
+  // },
+  // {
+  //   name: "about",
+  //   path: '/about',
+  //   element: lazyLoad('about')
+  // },
+  // {
+  //   name: "connect",
+  //   path: '/connect',
+  //   element: lazyLoad('connectWallet')
+  // },
   {
     name: "mining",
-    path: '/mining',
+    path: '/',
     element: lazyLoad('mining')
   },
   {

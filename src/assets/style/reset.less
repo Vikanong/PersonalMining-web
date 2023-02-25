@@ -3,7 +3,7 @@
 @bgColor: #ededed;
 
 h1 {
-  color: @primary-color;
+  // color: @primary-color;
 
   span {
     // color: rgb(0, 225, 255);
@@ -78,40 +78,6 @@ p {
 
   @media @desktop {
     // width: 1400px;
-  }
-}
-
-.contentWidth {
-  margin: auto;
-  max-width: 1100px;
-
-  @include mobile {
-    width: 92%;
-  }
-}
-
-.mobileHid {
-  @include mobile {
-    display: none !important;
-  }
-}
-
-.desktopHid {
-  @include laptop {
-    display: none !important;
-  }
-
-  @include desktop {
-    display: none !important;
-  }
-}
-
-.pageContentWidth {
-  width: 90.6rem;
-  margin: auto;
-
-  @include mobile {
-    width: 92%;
   }
 }
 
@@ -193,10 +159,6 @@ p {
 
 .mt40 {
   margin-top: 4rem;
-
-  @include mobile {
-    margin-top: 3rem;
-  }
 }
 
 .mb10 {

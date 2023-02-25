@@ -7,8 +7,6 @@ import ERC20_ABI from 'constants/abi/ERC20.json'
 import MULTICALL_ABI from 'constants/abi/Multicall.json'
 import Mining_ABI from 'constants/abi/Mining.json'
 
-import Raise_ABI from 'constants/abi/Raise.json'
-
 import contractsAddress from 'constants/contractsAddress'
 
 // returns null on errors

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { useMulticallContract } from './useContract'
 import { Interface } from '@ethersproject/abi'
 
