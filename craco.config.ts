@@ -51,7 +51,7 @@ module.exports = {
         '@babel/preset-env',
         {
           modules: false,
-          useBuiltIns: 'usage',
+          useBuiltIns: 'entry',
           corejs: {
             version: 3,
             proposals: true,
@@ -60,13 +60,12 @@ module.exports = {
       ],
     ],
     plugins: [
-      ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }, 'antd'],
       ["@babel/plugin-proposal-decorators", { "legacy": true }],
       ["@babel/plugin-proposal-class-properties", { "loose": true }],
       ["@babel/plugin-proposal-private-methods", { "loose": true }],
-      // ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+      ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
     ],
     loaderOptions: (babelLoaderOptions, { env, paths }) => { return babelLoaderOptions; }
   },
 }
-export {}
+export { }

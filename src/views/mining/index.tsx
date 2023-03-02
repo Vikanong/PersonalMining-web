@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react"
+import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
 import ConnectWalletModal from "@/components/ConnectWalletModal"
 import useMining from 'hooks/useMiningContract'
 import { useMiningContract } from 'hooks/useContract'
 import PoolCard from "./pool"
 import { PoolType } from "@/constants/type"
 
-
 import "./index.less"
 
 const Mining: React.FC = () => {
   const [pools, setPools] = useState<any[]>([]);
   const [showConnectWallet, setShowConnectWallet] = useState(false);
+  const { active } = useWeb3ReactCore();
 
   const miningContract = useMiningContract();
   const { poolList, stakingBNB, stakingToken } = useMining(miningContract);
@@ -18,7 +19,7 @@ const Mining: React.FC = () => {
   useEffect(() => {
     console.log(poolList);
     setPools(poolList);
-  }, [miningContract, poolList])
+  }, [miningContract, poolList, active])
 
   // const accountEllipsis = account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
 

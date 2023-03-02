@@ -6,7 +6,7 @@ interface ImageComponentProps {
 
 function ImageComponent({ imageName }: ImageComponentProps) {
   return (
-    <img src={require(`../assets/images/${imageName}.png`)} alt={imageName} className="icon" />
+    <img src={require(`../assets/images/${imageName}.png`).default} alt={imageName} className="icon" />
   );
 }
 

@@ -2,12 +2,11 @@ import { useMemo } from 'react'
 import { Contract } from '@ethersproject/contracts'
 import { useActiveWeb3React } from './web3hooks'
 import { getContract, getContractAddress } from '@/utils/contractUtils'
-
 import ERC20_ABI from 'constants/abi/ERC20.json'
 import MULTICALL_ABI from 'constants/abi/Multicall.json'
 import Mining_ABI from 'constants/abi/Mining.json'
-
 import contractsAddress from 'constants/contractsAddress'
+import { AddressZero } from '@ethersproject/constants'
 
 // returns null on errors
 function useContract<T extends Contract = Contract>(
@@ -22,7 +21,7 @@ function useContract<T extends Contract = Contract>(
     let address: string | undefined
     if (typeof addressOrAddressMap === 'string') address = addressOrAddressMap
     else address = addressOrAddressMap[chainId]
-    if (!address) return null
+    if (!address) return null;
     try {
       return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
     } catch (error) {

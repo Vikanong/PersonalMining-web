@@ -10,6 +10,7 @@
 
 # production
 /build
+/mining
 
 # misc
 .DS_Store

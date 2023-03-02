@@ -52,7 +52,7 @@ export default function useTokenUtils(tokenAddress: string) {
 
   useEffect(() => {
     tokenBalance()
-  }, [])
+  }, [account])
 
   return {
     balance,

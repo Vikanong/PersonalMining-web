@@ -1,4 +1,3 @@
-
 // 判断终端函数
 export const isMobile = () => {
   if (window.navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) {
@@ -31,3 +30,8 @@ export const tip = (txt: string) => {
     document.body.removeChild(div);
   }, 1500);
 }
+
+export const toHex = (num: any) => {
+  const val = Number(num);
+  return "0x" + val.toString(16);
+};

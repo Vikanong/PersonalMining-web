@@ -9,17 +9,22 @@ import {
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
 import { connectorsByName, ConnectorNames, connectorLocalStorageKey } from 'connectors/index'
-import { tip } from "@/utils"
+import { tip, toHex } from "@/utils"
+
+const providerRequest = async (method: any, params: any) => {
+  const ethereum = window?.ethereum;
+  return await ethereum.request({ method, params })
+};
 
 const useAuth = () => {
   const { activate, deactivate } = useWeb3React()
-
   const connectWallet = useCallback((connectorID: ConnectorNames) => {
     const connector = connectorsByName[connectorID]
     if (connector) {
       activate(connector, async (error: Error) => {
         window.localStorage.removeItem(connectorLocalStorageKey)
         if (error instanceof UnsupportedChainIdError) {
+          await providerRequest('wallet_switchEthereumChain', [{ chainId: toHex(connector.supportedChainIds[0]) }])
           console.error('Unsupported Chain Id', 'Unsupported Chain Id Error. Check your chain Id.');
         } else if (error instanceof NoEthereumProviderError) {
           console.error('Provider Error', 'No provider was found')

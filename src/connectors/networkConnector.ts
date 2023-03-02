@@ -17,7 +17,7 @@ type AsyncSendable = {
 }
 
 class RequestError extends Error {
-  constructor(message: string, public code: number, public data?: unknown) {
+  constructor(message: string, code: number, data?: unknown) {
     super(message)
   }
 }
@@ -29,17 +29,17 @@ interface BatchItem {
 }
 
 class MiniRpcProvider implements AsyncSendable {
-  public readonly isMetaMask: false = false
+  readonly isMetaMask: false = false
 
-  public readonly chainId: number
+  readonly chainId: number
 
-  public readonly url: string
+  readonly url: string
 
-  public readonly host: string
+  readonly host: string
 
-  public readonly path: string
+  readonly path: string
 
-  public readonly batchWaitTimeMs: number
+  readonly batchWaitTimeMs: number
 
   private nextId = 1
 
@@ -57,7 +57,7 @@ class MiniRpcProvider implements AsyncSendable {
     this.batchWaitTimeMs = batchWaitTimeMs ?? 50
   }
 
-  public readonly clearBatch = async () => {
+  readonly clearBatch = async () => {
     // console.info('Clearing batch', this.batch)
     const { batch } = this
     this.batch = []
@@ -109,7 +109,7 @@ class MiniRpcProvider implements AsyncSendable {
     }
   }
 
-  public readonly sendAsync = (
+  readonly sendAsync = (
     request: { jsonrpc: '2.0'; id: number | string | null; method: string; params?: any },
     callback: (error: any, response: any) => void
   ): void => {
@@ -118,7 +118,7 @@ class MiniRpcProvider implements AsyncSendable {
       .catch((error) => callback(error, null))
   }
 
-  public readonly request = async (
+  readonly request = async (
     method: string | { method: string; params: unknown[] },
     params?: any
   ): Promise<unknown> => {
@@ -161,27 +161,27 @@ export class NetworkConnector extends AbstractConnector {
     }, {})
   }
 
-  public get provider(): MiniRpcProvider {
+  get provider(): MiniRpcProvider {
     return this.providers[this.currentChainId]
   }
 
-  public async activate(): Promise<ConnectorUpdate> {
+  async activate(): Promise<ConnectorUpdate> {
     return { provider: this.providers[this.currentChainId], chainId: this.currentChainId, account: null }
   }
 
-  public async getProvider(): Promise<MiniRpcProvider> {
+  async getProvider(): Promise<MiniRpcProvider> {
     return this.providers[this.currentChainId]
   }
 
-  public async getChainId(): Promise<number> {
+  async getChainId(): Promise<number> {
     return this.currentChainId
   }
 
-  public async getAccount(): Promise<null> {
+  async getAccount(): Promise<null> {
     return null
   }
 
-  public deactivate() {
+  deactivate() {
     return null
   }
 }

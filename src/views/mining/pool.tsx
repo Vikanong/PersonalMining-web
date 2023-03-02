@@ -58,7 +58,7 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
 
     useEffect(() => {
         getPoolReward()
-    }, [])
+    }, [active])
 
     return (
         <li key={pool.miningId} className="th-card">
