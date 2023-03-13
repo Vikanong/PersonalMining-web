@@ -1,20 +1,18 @@
-// @ts-check
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Providers from './web3Providers/Providers';
-import { Buffer } from 'buffer';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from '@/App'
+import reportWebVitals from './reportWebVitals'
+import { Provider } from 'react-redux'
+import store from './store'
+import Web3Provider from '@/components/Web3Provider'
 
-
-window.Buffer = Buffer;
-
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-  <Providers>
-    <App />
-  </Providers>
-);
-reportWebVitals();
+  <Provider store={store}>
+    <Web3Provider>
+      <App />
+    </Web3Provider>
+  </Provider>
+)
+
+reportWebVitals()

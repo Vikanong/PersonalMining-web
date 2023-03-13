@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import Routelist from "./route"
-import Web3ReactManager from './components/Web3ReactManager'
+import Routelist from './router'
+import { useSelector, useDispatch } from 'react-redux'
 import "./assets/style/reset.less"
 
+function App() {
+  const data = useSelector((state) => {
+    return state
+  })
+  const dispatch = useDispatch()
 
-const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <Web3ReactManager>
-        <Routelist />
-      </Web3ReactManager>
+      <Routelist />
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

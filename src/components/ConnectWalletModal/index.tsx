@@ -1,9 +1,10 @@
 import React from "react"
-import useAuth from 'hooks/useAuth'
-import { connectorLocalStorageKey, ConnectorNames, connectors } from 'connectors/index'
+// import useAuth from 'hooks/useAuth'
+import { connectors } from '@/connectors'
 import { ReactComponent as MetamaskIcon } from 'images/icon/svg/metamask.svg'
 import { ReactComponent as WalletConnectIcon } from 'images/icon/svg/walletconnect.svg'
 import { ReactComponent as CloseIcon } from 'images/icon/svg/close.svg'
+import { Connector } from '@web3-react/types'
 
 import "./index.less"
 
@@ -13,12 +14,12 @@ interface Props {
 
 const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
 
-  const { connectWallet, disconnect } = useAuth()
+  // const { connectWallet, disconnect } = useAuth()
   // 连接钱包
-  const connect = (connectorId: ConnectorNames) => {
-    connectWallet(connectorId);
-    localStorage.setItem(connectorLocalStorageKey, connectorId);
-    checkModal(false)
+  const connect = (connector: Connector) => {
+    // connectWallet(connectorId);
+    // localStorage.setItem(connectorLocalStorageKey, connectorId);
+    // checkModal(false)
   }
 
   // 断开钱包
@@ -29,7 +30,7 @@ const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
 
   const getIcon = (title: string) => {
     switch (title) {
-      case "Metamask":
+      case "MetaMask":
         return <MetamaskIcon />
       case "WalletConnect":
         return <WalletConnectIcon />
@@ -46,7 +47,7 @@ const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
       <ul>
         {connectors.map(entry => (
           <li key={entry.title} onClick={() => {
-            connect(entry.connectorId)
+            connect(entry.connector)
           }}>
             <span>
               {getIcon(entry.title)}
