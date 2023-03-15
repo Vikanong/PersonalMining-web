@@ -8,7 +8,7 @@ import { Connector } from '@web3-react/types'
 import { getConnectionName } from '@/connection/utils'
 
 
-interface Config {
+export interface Config {
   title: string;
   connector: Connector
 }

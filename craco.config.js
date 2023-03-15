@@ -11,8 +11,9 @@ module.exports = {
       'constants': resolve('src/constants'),
       'hooks': resolve('src/hooks'),
       'connection': resolve('src/connection'),
+      'connectors': resolve('src/assets/connectors'),
       'components': resolve('src/components'),
-      'images': resolve('src/assets/images'),
+      'images': resolve('src/assets/images')
     }
   },
   plugins: [

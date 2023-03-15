@@ -24,12 +24,14 @@ export interface Connection {
   type: ConnectionType
 }
 
+export const MainChaid = 97;
+
 function onError(error: Error) {
   console.debug(`web3-react error: ${error}`)
 }
 
 const [web3Network, web3NetworkHooks] = initializeConnector<Network>(
-  (actions) => new Network({ actions, urlMap: RPC_PROVIDERS, defaultChainId: 1 })
+  (actions) => new Network({ actions, urlMap: RPC_PROVIDERS, defaultChainId: MainChaid })
 )
 
 export const networkConnection: Connection = {
@@ -83,7 +85,7 @@ const [web3CoinbaseWallet, web3CoinbaseWalletHooks] = initializeConnector<Coinba
       actions,
       options: {
         url: RPC_URLS[SupportedChainId.MAINNET][0],
-        appName: 'Uniswap',
+        appName: 'Personal Mining',
         // appLogoUrl: UNISWAP_LOGO_URL,
         reloadOnDisconnect: false,
       },

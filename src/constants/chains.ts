@@ -8,6 +8,9 @@ export enum SupportedChainId {
   GOERLI = 5,
   KOVAN = 42,
 
+  BSCMAINNET = 56,
+  BSCTESTNET = 97,
+
   ARBITRUM_ONE = 42161,
   ARBITRUM_RINKEBY = 421611,
 
@@ -22,6 +25,9 @@ export enum SupportedChainId {
 }
 
 export const CHAIN_IDS_TO_NAMES = {
+  [SupportedChainId.BSCMAINNET]: 'BSC mainnet',
+  [SupportedChainId.BSCTESTNET]: 'BSC testnet',
+  [SupportedChainId.ROPSTEN]: 'ropsten',
   [SupportedChainId.MAINNET]: 'mainnet',
   [SupportedChainId.ROPSTEN]: 'ropsten',
   [SupportedChainId.RINKEBY]: 'rinkeby',

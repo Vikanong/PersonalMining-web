@@ -1,10 +1,9 @@
 import React from "react"
-// import useAuth from 'hooks/useAuth'
-import { connectors } from '@/connectors'
+import { connectors, Config } from '@/connectors'
 import { ReactComponent as MetamaskIcon } from 'images/icon/svg/metamask.svg'
 import { ReactComponent as WalletConnectIcon } from 'images/icon/svg/walletconnect.svg'
+import { ReactComponent as CoinbaseWalletIcon } from 'images/icon/svg/coinbaseWalletIcon.svg'
 import { ReactComponent as CloseIcon } from 'images/icon/svg/close.svg'
-import { Connector } from '@web3-react/types'
 
 import "./index.less"
 
@@ -14,19 +13,19 @@ interface Props {
 
 const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
 
-  // const { connectWallet, disconnect } = useAuth()
   // 连接钱包
-  const connect = (connector: Connector) => {
-    // connectWallet(connectorId);
-    // localStorage.setItem(connectorLocalStorageKey, connectorId);
-    // checkModal(false)
+  const connect = async (entry: Config) => {
+    if (entry.connector) {
+      try {
+        await entry.connector.activate();
+        window.localStorage.setItem("ConnectionType", entry.title);
+        checkModal(false)
+      } catch (error) {
+        checkModal(false)
+        console.log(error);
+      }
+    }
   }
-
-  // 断开钱包
-  // const disConnectWallet = () => {
-  //   disconnect();
-  //   localStorage.removeItem(connectorLocalStorageKey);
-  // }
 
   const getIcon = (title: string) => {
     switch (title) {
@@ -34,6 +33,8 @@ const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
         return <MetamaskIcon />
       case "WalletConnect":
         return <WalletConnectIcon />
+      case "Coinbase Wallet":
+        return <CoinbaseWalletIcon />
       default:
         break;
     }
@@ -47,7 +48,7 @@ const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
       <ul>
         {connectors.map(entry => (
           <li key={entry.title} onClick={() => {
-            connect(entry.connector)
+            connect(entry)
           }}>
             <span>
               {getIcon(entry.title)}

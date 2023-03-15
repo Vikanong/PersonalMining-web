@@ -3,9 +3,10 @@
     "paths": {
       "@/*": ["src/*"],
       "views/*": ["src/views/*"],
-      "constants/*": ["src/constants/*"],
       "hooks/*": ["src/hooks/*"],
+      "constants/*": ["src/constants/*"],
       "connection/*": ["src/connection/*"],
+      "connectors/*": ["src/connectors/*"],
       "components/*": ["src/components/*"],
       "images/*": ["src/assets/images/*"],
     },
