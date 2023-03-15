@@ -4,11 +4,10 @@ import useMining from 'hooks/useMiningContract'
 import { useMiningContract } from 'hooks/useContract'
 import PoolCard from "./pool"
 import { PoolType } from "@/constants/type"
-
-
 import "./index.less"
 
 const Mining: React.FC = () => {
+
   const [pools, setPools] = useState<any[]>([]);
   const [showConnectWallet, setShowConnectWallet] = useState(false);
 
@@ -16,7 +15,6 @@ const Mining: React.FC = () => {
   const { poolList, stakingBNB, stakingToken } = useMining(miningContract);
 
   useEffect(() => {
-    console.log(poolList);
     setPools(poolList);
   }, [miningContract, poolList])
 
@@ -38,6 +36,7 @@ const Mining: React.FC = () => {
     }
   }
 
+
   return (
     <div>
       {showConnectWallet && <ConnectWalletModal checkModal={checkConnectWallet} />}
@@ -46,9 +45,7 @@ const Mining: React.FC = () => {
           return (<PoolCard key={pool.miningId} pool={pool} checkModal={checkConnectWallet} staking={staking} />)
         })}
       </ul>
-      {/* {accountEllipsis} */}
     </div>
-
   )
 }
 

@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { Contract } from '@ethersproject/contracts'
-import { useActiveWeb3React } from './web3hooks'
+// import { useActiveWeb3React } from './web3hooks'
+import { useWeb3React } from '@web3-react/core'
 import { getContract, getContractAddress } from '@/utils/contractUtils'
 
 import ERC20_ABI from 'constants/abi/ERC20.json'
@@ -10,26 +11,25 @@ import Mining_ABI from 'constants/abi/Mining.json'
 import contractsAddress from 'constants/contractsAddress'
 
 // returns null on errors
-function useContract<T extends Contract = Contract>(
+export function useContract<T extends Contract = Contract>(
   addressOrAddressMap: string | { [chainId: number]: string } | undefined,
   ABI: any,
   withSignerIfPossible = true
 ): T | null {
-  const { library, account, chainId } = useActiveWeb3React()
-
+  const { provider, account, chainId } = useWeb3React();
   return useMemo(() => {
-    if (!addressOrAddressMap || !ABI || !library || !chainId) return null
-    let address: string | undefined
+    if (!addressOrAddressMap || !ABI || !provider || !chainId) return null
+    let address: string | undefined;
     if (typeof addressOrAddressMap === 'string') address = addressOrAddressMap
     else address = addressOrAddressMap[chainId]
     if (!address) return null
     try {
-      return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
+      return getContract(address, ABI, provider, withSignerIfPossible && account ? account : undefined)
     } catch (error) {
       console.error('Failed to get contract', error)
       return null
     }
-  }, [addressOrAddressMap, ABI, library, chainId, withSignerIfPossible, account]) as T
+  }, [addressOrAddressMap, ABI, provider, chainId, withSignerIfPossible, account]) as T
 }
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {

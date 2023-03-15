@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import useMulticall from "./useMulticall"
-import MiningAbi from "../constants/abi/Mining.json"
-import contractsAddress from 'constants/contractsAddress'
-import { getContractAddress, pow18 } from '@/utils/contractUtils'
 import { Contract } from '@ethersproject/contracts'
 import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
+import useMulticall from "./useMulticall"
+import MiningAbi from "constants/abi/Mining.json"
+import contractsAddress from 'constants/contractsAddress'
+import { getContractAddress, pow18 } from '@/utils/contractUtils'
+
 import Decimal from 'decimal.js';
 
 export default function useMining(contract: Contract | null) {

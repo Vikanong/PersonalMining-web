@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useTokenContract } from "hooks/useContract"
 import { formatEther } from '@ethersproject/units'
 import { MaxUint256 } from '@ethersproject/constants'
-import { useActiveWeb3React } from './web3hooks'
+import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
 import { tokenDecimal } from '@/utils/contractUtils'
 import Decimal from 'decimal.js';
 
@@ -11,7 +11,7 @@ import Decimal from 'decimal.js';
 export default function useTokenUtils(tokenAddress: string) {
   const [balance, setBalance] = useState("--");
   const tokenContract = useTokenContract(tokenAddress);
-  const { account, library } = useActiveWeb3React();
+  const { account, provider } = useWeb3ReactCore();
 
   // 获取Token Balance
   const tokenBalance = async () => {
@@ -23,7 +23,7 @@ export default function useTokenUtils(tokenAddress: string) {
       }
       return "0"
     } else {
-      const balanceValue = await library?.getBalance(account || '')
+      const balanceValue = await provider?.getBalance(account || '')
       if (balanceValue) {
         setBalance(formatEther(balanceValue))
         return formatEther(balanceValue)
@@ -52,7 +52,7 @@ export default function useTokenUtils(tokenAddress: string) {
 
   useEffect(() => {
     tokenBalance()
-  }, [])
+  }, [account, provider])
 
   return {
     balance,

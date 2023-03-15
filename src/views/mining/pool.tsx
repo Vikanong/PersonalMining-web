@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useWeb3React as useWeb3ReactCore } from '@web3-react/core'
+import { useWeb3React } from '@web3-react/core'
 import ImageComponent from "@/components/ImageComponent"
 import { getContractAddress } from '@/utils/contractUtils'
 import contractsAddress from 'constants/contractsAddress'
@@ -14,14 +14,14 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
     const [val, setVal] = useState("");
     const [reward, setReward] = useState("");
     const [disabled, setDisabled] = useState(false);
-    const { active } = useWeb3ReactCore();
+    const { account, chainId } = useWeb3React();
     const miningContract = useMiningContract();
     const { getReward, withdraw } = useMining(miningContract);
     const contractAddress = getContractAddress(contractsAddress.mining);
     const { balance, isApprove, approve } = useTokenUtils(pool.symbol !== 'BNB' ? pool.tokenAddress : '');
 
     const stakeClick = async (pool: PoolType) => {
-        if (active) {
+        if (account) {
             setDisabled(true);
             if (pool.symbol !== 'BNB') {
                 const is = await isApprove(contractAddress || '');
@@ -58,7 +58,7 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
 
     useEffect(() => {
         getPoolReward()
-    }, [])
+    }, [account, chainId])
 
     return (
         <li key={pool.miningId} className="th-card">
@@ -84,10 +84,10 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
                     <input className="value" type="text" onChange={(e) => { setVal(e.target.value) }} />
                     <button className="staking control" onClick={() => {
                         stakeClick(pool)
-                    }} disabled={disabled}>{active ? 'Staking' : 'Connect'} </button>
+                    }} disabled={disabled}>{account ? 'Staking' : 'Connect'} </button>
                 </div>
                 {Number(reward) > 0 && <div>
-                    <button className="withdraw control" onClick={withdrawClick} disabled={disabled}>{active ? 'Withdraw' : 'Connect'} </button>
+                    <button className="withdraw control" onClick={withdrawClick} disabled={disabled}>{account ? 'Withdraw' : 'Connect'} </button>
                     <p className="reward">Reward: <span>{reward}</span></p>
                 </div>}
 
