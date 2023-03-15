@@ -5,6 +5,15 @@ const CracoLessPlugin = require('craco-less')
 
 module.exports = {
   webpack: {
+    configure: (webpackConfig, { env, paths }) => {
+      paths.appBuild = 'mining';
+      webpackConfig.output = {
+        ...webpackConfig.output,
+        path: path.resolve(__dirname, 'mining'),
+        publicPath: '/'
+      }
+      return webpackConfig;
+    },
     alias: {
       '@': resolve('src'),
       'views': resolve('src/views'),

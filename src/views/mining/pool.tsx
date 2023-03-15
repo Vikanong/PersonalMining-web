@@ -18,7 +18,7 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
     const miningContract = useMiningContract();
     const { getReward, withdraw } = useMining(miningContract);
     const contractAddress = getContractAddress(contractsAddress.mining);
-    const { balance, isApprove, approve } = useTokenUtils(pool.symbol !== 'BNB' ? pool.tokenAddress : '');
+    const { balance, tokenBalance, isApprove, approve } = useTokenUtils(pool.symbol !== 'BNB' ? pool.tokenAddress : '');
 
     const stakeClick = async (pool: PoolType) => {
         if (account) {
@@ -32,6 +32,7 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
             const Tx = await staking(pool, val);
             setDisabled(false);
             getPoolReward();
+            tokenBalance();
             return Tx
         } else {
             checkModal(true)

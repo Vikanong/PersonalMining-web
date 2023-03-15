@@ -56,6 +56,7 @@ export default function useTokenUtils(tokenAddress: string) {
 
   return {
     balance,
+    tokenBalance,
     isApprove,
     approve
   }
