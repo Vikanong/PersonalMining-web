@@ -64,7 +64,9 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
     return (
         <li key={pool.miningId} className="th-card">
             <div className="content">
-                <ImageComponent imageName={pool.symbol.toLowerCase()} />
+                <div className="icon-main">
+                    <ImageComponent imageName={pool.symbol.toLowerCase()} />
+                </div>
                 <div className="symbol">
                     {pool.symbol}
                 </div>
