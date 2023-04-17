@@ -6,16 +6,17 @@
 
 .miningList {
   display: flex;
-  min-height: 100vh;
+  // min-height: 100vh;
   justify-content: center;
   align-items: center;
 
   @media @mobile {
+    width: 100%;
     flex-wrap: wrap;
   }
 
   li {
-    width: 30rem;
+    width: 36rem;
     min-height: 28rem;
     margin: 0 5rem;
     border-radius: 1.6rem;
@@ -23,9 +24,10 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 
     @media @mobile {
-      width: 63%;
+      width: 86%;
       margin: 2rem 0;
     }
 
@@ -40,7 +42,6 @@
       border-radius: 2rem;
       margin: auto;
       overflow: hidden;
-      
       background: white;
       border: 1px solid #e5e5e5;
       box-shadow: 4px 4px 6px #cbcbcb;

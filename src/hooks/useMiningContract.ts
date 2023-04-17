@@ -78,9 +78,21 @@ export default function useMining(contract: Contract | null) {
         return reward;
     }
 
+    // 领取收益
     const withdraw = async (miningId: number) => {
         try {
             const transaction = await contract?.withdraw(miningId);
+            const result = await transaction.wait();
+            return result;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // 领取测试Token
+    const receiveToken = async () => {
+        try {
+            const transaction = await contract?.receiveToken();
             const result = await transaction.wait();
             return result;
         } catch (error) {
@@ -98,6 +110,7 @@ export default function useMining(contract: Contract | null) {
         stakingBNB,
         stakingToken,
         getReward,
-        withdraw
+        withdraw,
+        receiveToken
     }
 }

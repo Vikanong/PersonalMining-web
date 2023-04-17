@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react"
 import ConnectWalletModal from "@/components/ConnectWalletModal"
 import useMining from 'hooks/useMiningContract'
 import { useMiningContract } from 'hooks/useContract'
-import PoolCard from "./pool"
 import Header from "./header/header"
+import PoolCard from "./pool"
+import TokenInfo from './tokenInfo/index'
 import { PoolType } from "@/constants/type"
 import "./index.less"
 
@@ -42,6 +43,7 @@ const Mining: React.FC = () => {
     <div>
       {showConnectWallet && <ConnectWalletModal checkModal={checkConnectWallet} />}
       <Header />
+      <TokenInfo />
       <ul className="miningList">
         {pools.map(pool => {
           return (<PoolCard key={pool.miningId} pool={pool} checkModal={checkConnectWallet} staking={staking} />)

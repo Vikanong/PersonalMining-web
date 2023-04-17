@@ -21,6 +21,8 @@ export const FALLBACK_URLS: { [key in SupportedChainId]: string[] } = {
     'https://bsc-dataseed1.ninicoin.io/'
   ],
   [SupportedChainId.BSCTESTNET]: [
+    'https://endpoints.omniatech.io/v1/bsc/testnet/public',
+    'https://data-seed-prebsc-2-s3.binance.org:8545',
     'https://data-seed-prebsc-1-s2.binance.org:8545/',
     'https://data-seed-prebsc-2-s1.binance.org:8545/',
     'https://data-seed-prebsc-2-s2.binance.org:8545/',
@@ -107,7 +109,7 @@ export const RPC_URLS: { [key in SupportedChainId]: string[] } = {
     'https://bsc-dataseed.binance.org/'
   ],
   [SupportedChainId.BSCTESTNET]: [
-    'https://data-seed-prebsc-1-s1.binance.org:8545/'
+    'https://endpoints.omniatech.io/v1/bsc/testnet/public'
   ],
   [SupportedChainId.MAINNET]: [
     `https://mainnet.infura.io/v3/${INFURA_KEY}`,
