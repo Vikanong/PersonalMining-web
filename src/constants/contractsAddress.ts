@@ -5,7 +5,7 @@ const contractsAddress = {
   },
   mining: {
     56: '',
-    97: '0x096Bb1bAAe9F6120dA9128691534410b43d27ebd',
+    97: '0xe67d0219B2df5dC5c0A8157F8576af0D8D10790e',
   }
 }
 export default contractsAddress

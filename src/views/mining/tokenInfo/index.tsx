@@ -23,7 +23,7 @@ const TokenInfo: React.FC = () => {
   }
 
   const addToken = useCallback(() => {
-    if (!token?.symbol || !connector.watchAsset) return;
+    if (!account || !token?.symbol || !connector.watchAsset) return;
     setDisabled(true);
     connector.watchAsset(token).then(r => {
       setDisabled(false);
@@ -34,6 +34,7 @@ const TokenInfo: React.FC = () => {
 
 
   const receiveTokenClick = async () => {
+    if (!account) return;
     setDisabled(true);
     const Tx = await receiveToken();
     setDisabled(false);

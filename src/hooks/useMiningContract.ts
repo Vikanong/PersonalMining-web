@@ -92,7 +92,8 @@ export default function useMining(contract: Contract | null) {
     // 领取测试Token
     const receiveToken = async () => {
         try {
-            const transaction = await contract?.receiveToken();
+            const value = new Decimal(100).mul(pow18).toFixed();
+            const transaction = await contract?.receiveToken(value);
             const result = await transaction.wait();
             return result;
         } catch (error) {
