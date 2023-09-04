@@ -54,8 +54,8 @@ const TokenInfo: React.FC = () => {
       </div>
 
       <div className="operate">
-        <button onClick={addToken} disabled={disabled}>Add To Wallet</button>
-        <button onClick={receiveTokenClick} disabled={disabled}>Receive Test Token</button>
+        <button onClick={addToken} disabled={disabled} title="Token添加到钱包">Add To Wallet</button>
+        <button onClick={receiveTokenClick} disabled={disabled} title="领取测试Token">Receive Test Token</button>
       </div>
     </div>
   )
