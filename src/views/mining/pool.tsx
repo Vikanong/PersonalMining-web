@@ -10,7 +10,7 @@ import useMining from 'hooks/useMiningContract'
 import { useMiningContract } from 'hooks/useContract'
 
 
-const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Function }> = ({ pool, checkModal, staking }) => {
+const PoolCard: React.FC<{ pool: PoolType, checkConnectWallet: Function, staking: Function }> = ({ pool, checkConnectWallet, staking }) => {
     const [val, setVal] = useState("");
     const [reward, setReward] = useState("");
     const [disabled, setDisabled] = useState(false);
@@ -20,46 +20,50 @@ const PoolCard: React.FC<{ pool: PoolType, checkModal: Function, staking: Functi
     const contractAddress = getContractAddress(contractsAddress.mining);
     const { balance, tokenBalance, isApprove, approve } = useTokenUtils(pool.symbol !== 'BNB' ? pool.tokenAddress : '');
 
-    const stakeClick = async (pool: PoolType) => {
-        if (account) {
-            setDisabled(true);
-            if (pool.symbol !== 'BNB') {
-                const is = await isApprove(contractAddress || '');
-                if (!is) {
-                    await approve(contractAddress || '');
-                }
-            }
-            const Tx = await staking(pool, val);
-            setDisabled(false);
-            getPoolReward();
-            tokenBalance();
-            return Tx
-        } else {
-            checkModal(true)
+    const isApproved = async () => {
+        if (pool.symbol === 'BNB') {
+            return true;
         }
-    }
+        return await isApprove(contractAddress || '');
+    };
+
+    const stakeClick = async (pool: PoolType) => {
+        if (!account) {
+            checkConnectWallet(true);
+            return;
+        }
+
+        setDisabled(true);
+        if (!(await isApproved())) {
+            await approve(contractAddress || '');
+        }
+        const Tx = await staking(pool, val);
+        setDisabled(false);
+        getPoolReward();
+        tokenBalance();
+        return Tx;
+    };
+
     const getPoolReward = async () => {
         const value = await getReward(pool.miningId);
-        setReward(value)
-    }
+        setReward(value);
+    };
 
     const withdrawClick = async () => {
-        if (Number(reward) > 0) {
-            setDisabled(true);
-            const Tx = await withdraw(pool.miningId);
-            setDisabled(false);
-            getPoolReward();
-            return Tx
-        }
-    }
+        if (Number(reward) <= 0) return;
 
-    setInterval(() => {
-        getPoolReward()
-    }, 60 * 1000)
+        setDisabled(true);
+        const Tx = await withdraw(pool.miningId);
+        setDisabled(false);
+        getPoolReward();
+        return Tx;
+    };
 
     useEffect(() => {
-        getPoolReward()
-    }, [account, chainId])
+        getPoolReward();
+        const intervalId = setInterval(() => getPoolReward(), 60 * 1000);
+        return () => clearInterval(intervalId); 
+    }, [account, chainId]);
 
     return (
         <li key={pool.miningId} className="th-card">

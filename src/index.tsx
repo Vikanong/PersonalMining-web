@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from '@/App'
-import reportWebVitals from './reportWebVitals'
+// import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import store from './store'
 import Web3Provider from '@/components/Web3Provider'
@@ -17,5 +17,3 @@ root.render(
     </Web3Provider>
   </Provider>
 )
-
-reportWebVitals()

@@ -8,20 +8,19 @@ import { ReactComponent as CloseIcon } from 'images/icon/svg/close.svg'
 import "./index.less"
 
 interface Props {
-  checkModal: Function
+  checkConnectWallet: Function
 }
 
-const ConnectWalletModal: React.FC<Props> = ({ checkModal }) => {
+const ConnectWalletModal: React.FC<Props> = ({ checkConnectWallet }) => {
 
-  // 连接钱包
   const connect = async (entry: Config) => {
     if (entry.connector) {
       try {
         await entry.connector.activate();
         window.localStorage.setItem("ConnectionType", entry.title);
-        checkModal(false)
+        checkConnectWallet(false)
       } catch (error) {
-        checkModal(false)
+        checkConnectWallet(false)
         console.log(error);
       }
     }
