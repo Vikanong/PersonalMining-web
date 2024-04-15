@@ -29,7 +29,7 @@ const Header: React.FC = () => {
 
   return (
     <div className="header">
-      {showConnectModal && <ConnectWalletModal checkModal={checkConnectWallet} />}
+      {showConnectModal && <ConnectWalletModal checkConnectWallet={checkConnectWallet} />}
       <button className="connect-button" onClick={disconnect}>
         {connectButtonText}
       </button>

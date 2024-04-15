@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ConnectWalletModal from "@/components/ConnectWalletModal";
+import Loading from "@/components/Loading";
 import useMining from 'hooks/useMiningContract';
 import { useMiningContract } from 'hooks/useContract';
 import Header from "./header/header";
@@ -42,6 +43,7 @@ const Mining: React.FC = () => {
       <Header />
       <TokenInfo />
       <ul className="miningList">
+        {pools.length === 0 && <Loading />}
         {pools.map(pool => (
           <PoolCard key={pool.miningId} pool={pool} checkConnectWallet={checkConnectWallet} staking={staking} />
         ))}

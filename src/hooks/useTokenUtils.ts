@@ -45,7 +45,10 @@ export default function useTokenUtils(tokenAddress: string) {
   const approve = async (contractAddress: string) => {
     if (!tokenAddress || !contractAddress || !account) return false;
     const options = { from: account };
-    const transaction = await tokenContract?.approve(contractAddress, MaxUint256, options);
+    const balance = await tokenContract?.balanceOf(account);
+    const decimals = await tokenContract?.decimals();
+    const value = new Decimal(balance.toString()).div(tokenDecimal(decimals)).mul(tokenDecimal(18)).toFixed();
+    const transaction = await tokenContract?.approve(contractAddress, value, options);
     const result = await transaction.wait();
     return result;
   }

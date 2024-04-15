@@ -41,7 +41,7 @@ const ConnectWalletModal: React.FC<Props> = ({ checkConnectWallet }) => {
 
   return (
     <div className="walletModal">
-      <span onClick={() => { checkModal(false) }} className="close">
+      <span onClick={() => { checkConnectWallet(false) }} className="close">
         <CloseIcon className="svg-icon" />
       </span>
       <ul>

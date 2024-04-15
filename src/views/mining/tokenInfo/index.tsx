@@ -52,12 +52,12 @@ const TokenInfo: React.FC = () => {
   return (
     <div className="tokenInfo">
       <div className="infoItem">
-        <div className="label">代币符号：</div>
+        <div className="label">Symbol:</div>
         <div className="value symbol">HEY</div>
       </div>
 
       <div className="infoItem">
-        <div className="label">代币地址：</div>
+        <div className="label">Address:</div>
         <div className="value ellipsis">{tokenAddress}</div>
       </div>
 

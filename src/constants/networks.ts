@@ -110,7 +110,7 @@ export const RPC_URLS: { [key in SupportedChainId]: string[] } = {
     'https://bsc-dataseed.binance.org/'
   ],
   [SupportedChainId.BSCTESTNET]: [
-    'https://bsc-testnet.public.blastapi.io'
+    'https://bsc-prebsc-dataseed.bnbchain.org/'
   ],
   [SupportedChainId.MAINNET]: [
     `https://mainnet.infura.io/v3/${INFURA_KEY}`,
