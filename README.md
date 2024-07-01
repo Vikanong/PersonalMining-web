@@ -1,5 +1,8 @@
 # Web3 Interface React
 
+![image](https://github.com/Vikanong/PersonalMining-web/assets/39288040/d2a46f93-7684-4696-aa4b-e96f33a84f66)
+
+
 ### `install`
 yarn install
 
